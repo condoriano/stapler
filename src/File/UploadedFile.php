@@ -84,7 +84,10 @@ class UploadedFile implements FileInterface
      */
     public function getFilename()
     {
-        return $this->uploadedFile->getClientOriginalName();
+         $origFilename = $this->uploadedFile->getClientOriginalName();
+         $hashedFilename = substr(md5($origFilename), 0, 16) . ".". $this->uploadedFile->guessClientExtension();
+
+         return $hashedFilename;
     }
 
     /**

@@ -44,4 +44,11 @@ class File extends SymfonyFile implements FileInterface
 
         return false;
     }
+    
+    public function getFilename()
+    {
+        $filename = parent::getFilename();
+
+        return substr(md5($filename), 0, 16) .'.'. $this->guessExtension();
+    }
 }
